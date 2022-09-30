@@ -43,26 +43,84 @@
             style="table-layout: fixed; word-wrap: break-word"
           >
             <thead class="thead-dark">
-              <th>Colour Code</th>
-              <th>Alt Colour Code</th>
+              <th>Product Name</th>
+              <th>Card Name</th>
               <th>Colour Name</th>
               <th>Limit</th>
               <th>Search</th>
             </thead>
             <tbody>
               <td>
-                <input
-                  id="colour_code"
-                  placeholder="Colour Code"
-                  class="text-center form-control"
-                />
+                <select class="form-control" id="product_name">
+                  <option selected value="any">Any</option>
+                  <option value="AAEE">Aqua Advanced Eggshell Exterior</option>
+                  <option value="AAGE">Aqua Advanced Gloss Exterior</option>
+                  <option value="AAME">Aqua Advanced Matt Exterior</option>
+                  <option value="AASE">Aqua Advanced Satin Exterior</option>
+                  <option value="BME">Barn Matt Exterior</option>
+                  <option value="BSE">Barn Satin Exterior</option>
+                  <option value="BSGE">Barn Semi Gloss Exterior</option>
+                  <option value="EFE">Extra - Flex Exterior</option>
+                  <option value="FPI">Floor Paint Interior</option>
+                  <option value="IFI">Interior Flex Interior</option>
+                  <option value="MSFGE">
+                    Multi Surface Paint Gloss Exterior
+                  </option>
+                  <option value="MSFME">
+                    Multi Surface Paint Matt Exterior
+                  </option>
+                  <option value="MSFSE">
+                    Multi Surface Paint Satin Exterior
+                  </option>
+                  <option value="SDMI">Spray Daylight Matt Interior</option>
+                </select>
               </td>
               <td>
-                <input
-                  id="alt_colour_code"
-                  placeholder="Alt Colour Code"
-                  class="text-center form-control"
-                />
+                <select class="form-control" id="card_name">
+                  <option selected value="any">Any</option>
+                  <option value="AAC">Albany-Alternative Colours</option>
+                  <option value="ASAC">Annie Sloan-Alternative Colours</option>
+                  <option value="BS3">British Standard 381C</option>
+                  <option value="BS4">British Standard 4800</option>
+                  <option value="BS5">British Standard 5252F</option>
+                  <option value="CCBPM">CC Bedec - Barn Paint - Matt</option>
+                  <option value="CCBPS">CC Bedec - Barn Paint - Satin</option>
+                  <option value="CCBPSG">
+                    CC Bedec - Barn Paint - Semi Gloss
+                  </option>
+                  <option value="CCBEF">CC Bedec - Extra-Flex</option>
+                  <option value="CCBMSPG">CC Bedec - MSP - Gloss</option>
+                  <option value="CCBMSPM">CC Bedec - MSP - Matt</option>
+                  <option value="CCBMSS">CC Bedec - MSP - Satin</option>
+                  <option value="CCBMSPGL">CC Bedec - MSP Gloss</option>
+                  <option value="DGAC">
+                    Designers Guild-Alternative Colours
+                  </option>
+                  <option value="DHAC">
+                    Dulux Heritage-Alternative Colours
+                  </option>
+                  <option value="EAC">Earthborn-Alternative Colours</option>
+                  <option value="FBAC">FB-Alternative Colours</option>
+                  <option value="GBAC">
+                    GRAHAM & BROWN-Alternative Colours
+                  </option>
+                  <option value="LAAC">Laura Ashley-Alternative Colours</option>
+                  <option value="LGCOEAC">
+                    Little Green COE-Alternative Colours
+                  </option>
+                  <option value="LGAC">Little Green-Alternative Colours</option>
+                  <option value="MLNAC">
+                    Mylands - Neutrals-Alternative Colours
+                  </option>
+                  <option value="NCSSE">NCS Second Edition 2009</option>
+                  <option value="PPLIBAC">
+                    Paint & Paper Lib-Alternative Colours
+                  </option>
+                  <option value="RAL">RAL 840HR</option>
+                  <option value="RALBS">RAL 840HR Bedec Satin</option>
+                  <option value="SAC">Sandrerson-Alternative Colours</option>
+                  <option value="ZAC">Zoffany-Alternative Colours</option>
+                </select>
               </td>
               <td>
                 <input
@@ -96,6 +154,7 @@
             style="table-layout: fixed; word-wrap: break-word"
           >
             <thead class="thead-dark">
+              <th>Product Name</th>
               <th>Colour Code</th>
               <th>Alt Colour Code</th>
               <th>Colour Name</th>
