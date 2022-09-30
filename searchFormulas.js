@@ -77,9 +77,9 @@ function SearchCodes() {
         // Check statements...
         // Check if product item does not matches
         data_match = false;
-
         // If both drop downs are selected
         if (product_name.value != "any" && card_name.value != "any") {
+          // if it does not exist, continue loop
           if (
             productName.includes(
               colourCodeArr[product_name.value].toLowerCase()
@@ -87,27 +87,34 @@ function SearchCodes() {
             cardName.includes(cardNameArr[card_name.value].toLowerCase())
           ) {
             data_match = data[i];
+          } else {
+            continue;
           }
         }
         // else, work through them one by one
         else {
           // check if product has value to select
-          if (
-            product_name.value != "any" &&
-            productName.includes(
-              colourCodeArr[product_name.value].toLowerCase()
-            )
-          ) {
-            data_match = data[i];
+          if (product_name.value != "any") {
+            // if it does not exist, continue loop
+            if (
+              productName.includes(
+                colourCodeArr[product_name.value].toLowerCase()
+              )
+            ) {
+              data_match = data[i];
+            } else {
+              continue;
+            }
           }
 
           // check if card name has value to select
-          if (
-            card_name.value != "any" &&
-            cardName.includes(cardNameArr[card_name.value].toLowerCase())
-          ) {
-            data_match = data[i];
-          }
+          if (card_name.value != "any")
+            if (cardName.includes(cardNameArr[card_name.value].toLowerCase())) {
+              data_match = data[i];
+              console.log(data_match, cardNameArr[card_name.value]);
+            } else {
+              continue;
+            }
         }
 
         // If colour name input has no value
@@ -118,10 +125,13 @@ function SearchCodes() {
 
         // Check if there is also info in input fields
         if (colour_name.value.length > 0) {
+          //console.log(data[i], colourName, colour_name.value.toLowerCase());
           // 1) check if data match IS SET, then look for colour name
           if (
-            data_match &&
-            colourName.includes(colour_name.value.toLowerCase())
+            (colourCode.includes(colour_name.value.toLowerCase()) ||
+              AltcolourCode.includes(colour_name.value.toLowerCase()) ||
+              colourName.includes(colour_name.value.toLowerCase())) &&
+            data_match
           ) {
             found_results.push(data[i]);
             continue;
@@ -133,14 +143,7 @@ function SearchCodes() {
               AltcolourCode.includes(colour_name.value.toLowerCase()) ||
               colourName.includes(colour_name.value.toLowerCase())
             ) {
-              console.log(
-                colourCode,
-                AltcolourCode,
-                colourName,
-                colour_name.value
-              );
               found_results.push(data[i]);
-              break;
               continue;
             }
           }
