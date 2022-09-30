@@ -133,7 +133,14 @@ function SearchCodes() {
               AltcolourCode.includes(colour_name.value.toLowerCase()) ||
               colourName.includes(colour_name.value.toLowerCase())
             ) {
+              console.log(
+                colourCode,
+                AltcolourCode,
+                colourName,
+                colour_name.value
+              );
               found_results.push(data[i]);
+              break;
               continue;
             }
           }
