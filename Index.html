@@ -45,11 +45,7 @@
             <thead class="thead-dark">
               <th>Product Name</th>
               <th>Card Name</th>
-              <th>
-                Colour Name /<br />
-                Colour Code /<br />
-                Alt Colour
-              </th>
+              <th>Colour you would like to complement</th>
               <th>Limit</th>
               <th>Search</th>
             </thead>
@@ -160,15 +156,47 @@
             <thead class="thead-dark">
               <th>Product Name</th>
               <th>Colour Code</th>
-              <th>Alt Colour Code</th>
               <th>Colour Name</th>
               <th>Base Code</th>
+              <th>Select</th>
             </thead>
             <tbody id="result_body"></tbody>
           </table>
         </div>
       </div>
     </div>
+
+    <div
+      class="h-100 d-flex align-items-center justify-content-center bg-white"
+    >
+      <div class="container m-5" id="selected_div" style="display: none">
+        <div class="row justify-content-md-center border">
+          <div class="row mr-1">
+            <ul class="navbar-nav px-3">
+              <li class="nav-item text">
+                <div class="d-flex flex-row-reverse">
+                  <div class="p-2">
+                    <button class="btn btn-danger">Close</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col col-lg-4 m-3">
+            <h3 class="text-center text-primary"><b>Bedec Product Code</b></h3>
+            <p class="text-center">
+              <b id="product_code_display">BEDE2ASKDN/12</b>
+            </p>
+            <p class="text-center">
+              <b id="barcode_code_display">12983712893</b>
+            </p>
+          </div>
+          <div class="col-md-auto"></div>
+          <div class="col col-lg-2"><svg class="barcode"></svg></div>
+        </div>
+      </div>
+    </div>
+    <!-- <svg class="barcode"></svg> -->
   </body>
 
   <script
@@ -181,7 +209,11 @@
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"
   ></script>
+
+  <script type="text/javascript" src="konbert-export-014afd7aa7d34.js"></script>
+  <script type="text/javascript" src="JsBarcode.all.min.js"></script>
   <script type="text/javascript" src="searchFormulas.js"></script>
+
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"

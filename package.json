@@ -1,0 +1,24 @@
+{
+  "name": "bedeccolournamessearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BarcodeData.js",
+  "dependencies": {
+    "common.js": "^1.1.1",
+    "jquery-csv": "^1.0.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KRadusz/BedecColourNamesSearch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KRadusz/BedecColourNamesSearch/issues"
+  },
+  "homepage": "https://github.com/KRadusz/BedecColourNamesSearch#readme"
+}
