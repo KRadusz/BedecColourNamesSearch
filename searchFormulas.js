@@ -16,8 +16,8 @@ colourCodeArr = {
 };
 
 cardNameArr = {
-  AAC: "Albany-Alternative Colours",
-  ASAC: "Annie Sloan-Alternative Colours",
+  AAC: "Bedec Complementry Colours - AL",
+  ASAC: "Bedec Complementry Colours - AS",
   BS3: "British Standard 381C",
   BS4: "British Standard 4800",
   BS5: "British Standard 5252F",
@@ -29,24 +29,23 @@ cardNameArr = {
   CCBMSPM: "CC Bedec - MSP - Matt",
   CCBMSS: "CC Bedec - MSP - Satin",
   CCBMSPGL: "CC Bedec - MSP Gloss",
-  DGAC: "Designers Guild-Alternative Colours",
-  DHAC: "Dulux Heritage-Alternative Colours",
-  EAC: "Earthborn-Alternative Colours",
-  FBAC: "FB-Alternative Colours",
-  GBAC: "GRAHAM & BROWN-Alternative Colours",
-  LAAC: "Laura Ashley-Alternative Colours",
-  LGCOEAC: "Little Green COE-Alternative Colours",
-  LGAC: "Little Green-Alternative Colours",
-  MLNAC: "Mylands - Neutrals-Alternative Colours",
+  DGAC: "Bedec Complementry Colours - DG",
+  DHAC: "Bedec Complementry Colours - DH",
+  EAC: "Bedec Complementry Colours - EB",
+  FBAC: "Bedec Complementry Colours - FB",
+  GBAC: "Bedec Complementry Colours - GB",
+  LAAC: "Bedec Complementry Colours - LA",
+  LGAC: "Bedec Complementry Colours - LG",
+  LGCOEAC: "Bedec Complementry Colours - LGC",
+
+  MLNAC: "Bedec Complementry Colours - MLN",
   NCSSE: "NCS Second Edition 2009",
-  PPLIBAC: "Paint & Paper Lib-Alternative Colours",
+  PPLIBAC: "Bedec Complementry Colours - PPL",
   RAL: "RAL 840HR",
   RALBS: "RAL 840HR Bedec Satin",
-  SAC: "Sandrerson-Alternative Colours",
-  ZAC: "Zoffany-Alternative Colours",
+  SAC: "Bedec Complementry Colours - SA",
+  ZAC: "Bedec Complementry Colours - ZO",
 };
-
-$(".barcode").JsBarcode("abc123");
 
 function SearchCodes() {
   const data = BarCodeData;
@@ -157,6 +156,9 @@ function SearchCodes() {
     const bc = document.createElement("td");
     bc.innerHTML = found_results[i].BASECODE;
 
+    const pack_size = document.createElement("td");
+    pack_size.innerHTML = found_results[i].PackSize;
+
     const select_td = document.createElement("td");
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
@@ -178,6 +180,7 @@ function SearchCodes() {
     //tr.appendChild(acc);
     tr.appendChild(cn);
     tr.appendChild(bc);
+    tr.appendChild(pack_size);
     tr.appendChild(select_td);
 
     result_body.appendChild(tr);
