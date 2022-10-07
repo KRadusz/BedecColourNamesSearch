@@ -209,5 +209,5 @@ function ViewBarcode(product_code, barcode) {
 
 function closeView() {
   const selected_div = document.getElementById("selected_div");
-  selected_div.style.display = "false";
+  selected_div.style.display = "none";
 }
