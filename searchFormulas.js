@@ -47,7 +47,14 @@ cardNameArr = {
   ZAC: "Bedec Complementry Colours - ZO",
 };
 
+BarCodeData1.push(BarCodeData2);
+BarCodeData1.push(BarCodeData3);
+BarCodeData = BarCodeData1;
+
 function SearchCodes() {
+  BarCodeData1;
+  BarCodeData2;
+  BarCodeData3;
   const data = BarCodeData;
   const limit_results = document.getElementById("limit_results");
   var limitNum = limit_results.value;
@@ -62,7 +69,9 @@ function SearchCodes() {
     if (found_results.length == limitNum) {
       break;
     }
-
+    if (data[i].COLOURCODE == null) {
+      continue;
+    }
     colourCode = data[i].COLOURCODE.toLowerCase();
     AltcolourCode = data[i].ALTCOLOURCODE.toLowerCase();
     colourName = data[i].COLOURNAME.toLowerCase();
@@ -102,7 +111,6 @@ function SearchCodes() {
       if (card_name.value != "any")
         if (cardName.includes(cardNameArr[card_name.value].toLowerCase())) {
           data_match = data[i];
-          console.log(data_match, cardNameArr[card_name.value]);
         } else {
           continue;
         }
