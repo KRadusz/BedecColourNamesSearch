@@ -163,10 +163,10 @@ function SearchCodes() {
     cn.innerHTML = found_results[i].COLOURNAME;
     const bc = document.createElement("td");
     bc.innerHTML = found_results[i].BASECODE;
-
     const pack_size = document.createElement("td");
     pack_size.innerHTML = found_results[i].PackSize;
-
+    const rgb_td = document.createElement("td");
+    rgb_td.style.backgroundColor = found_results[i].RGB_HTML;
     const select_td = document.createElement("td");
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
@@ -177,6 +177,8 @@ function SearchCodes() {
         found_results[i].BrewersProductCode +
         "','" +
         found_results[i].BedecProductBarcode +
+        "','" +
+        found_results[i].RGB_HTML +
         "')"
     );
 
@@ -189,6 +191,7 @@ function SearchCodes() {
     tr.appendChild(cn);
     tr.appendChild(bc);
     tr.appendChild(pack_size);
+    tr.appendChild(rgb_td);
     tr.appendChild(select_td);
 
     result_body.appendChild(tr);
@@ -207,7 +210,7 @@ function SearchCodes() {
   }
 }
 
-function ViewBarcode(product_code, barcode) {
+function ViewBarcode(product_code, barcode, rgb_colour) {
   const selected_div = document.getElementById("selected_div");
   selected_div.style.display = "";
   const productCode = document.getElementById("product_code_display");
@@ -216,6 +219,7 @@ function ViewBarcode(product_code, barcode) {
   barCode.innerHTML = barcode;
 
   $(".barcode").JsBarcode(barcode);
+  $(".barcode1").JsBarcode(rgb_colour);
 }
 
 function closeView() {
