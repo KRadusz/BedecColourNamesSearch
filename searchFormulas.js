@@ -75,8 +75,8 @@ function SearchCodes() {
     colourCode = data[i].COLOURCODE.toLowerCase();
     AltcolourCode = data[i].ALTCOLOURCODE.toLowerCase();
     colourName = data[i].COLOURNAME.toLowerCase();
-    productName = data[i].PRODUCTNAME.toLowerCase();
-    cardName = data[i].CARDNAME.toLowerCase();
+    productName = data[i].PRODUCTNAME;
+    cardName = data[i].CARDNAME;
 
     // Check statements...
     // Check if product item does not matches
@@ -85,8 +85,8 @@ function SearchCodes() {
     if (product_name.value != "any" && card_name.value != "any") {
       // if it does not exist, continue loop
       if (
-        productName.includes(colourCodeArr[product_name.value].toLowerCase()) &&
-        cardName.includes(cardNameArr[card_name.value].toLowerCase())
+        productName.includes(colourCodeArr[product_name.value]) &&
+        cardName.includes(cardNameArr[card_name.value])
       ) {
         data_match = data[i];
       } else {
@@ -98,9 +98,7 @@ function SearchCodes() {
       // check if product has value to select
       if (product_name.value != "any") {
         // if it does not exist, continue loop
-        if (
-          productName.includes(colourCodeArr[product_name.value].toLowerCase())
-        ) {
+        if (productName.includes(colourCodeArr[product_name.value])) {
           data_match = data[i];
         } else {
           continue;
@@ -109,7 +107,7 @@ function SearchCodes() {
 
       // check if card name has value to select
       if (card_name.value != "any")
-        if (cardName.includes(cardNameArr[card_name.value].toLowerCase())) {
+        if (cardName.includes(cardNameArr[card_name.value])) {
           data_match = data[i];
         } else {
           continue;
@@ -178,7 +176,7 @@ function SearchCodes() {
         "','" +
         found_results[i].BedecProductBarcode +
         "','" +
-        found_results[i].RGB_HTML +
+        found_results[i].BrewersProductCode +
         "')"
     );
 
