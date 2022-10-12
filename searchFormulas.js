@@ -155,8 +155,15 @@ function SearchCodes() {
     pd.innerHTML = found_results[i].PRODUCTNAME;
     const cc = document.createElement("td");
     cc.innerHTML = found_results[i].COLOURCODE;
-    // const acc = document.createElement("td");
-    // acc.innerHTML = found_results[i].ALTCOLOURCODE;
+    const ccn = document.createElement("td");
+    // if it includes long txt
+    if (found_results[i].CARDNAME.includes("Bedec Complementry Colours")) {
+      var split_info = found_results[i].CARDNAME;
+      ccn.innerHTML = split_info.split("Bedec Complementry Colours - ")[1];
+    } else {
+      ccn.innerHTML = found_results[i].CARDNAME;
+    }
+
     const cn = document.createElement("td");
     cn.innerHTML = found_results[i].COLOURNAME;
     const bc = document.createElement("td");
@@ -185,7 +192,7 @@ function SearchCodes() {
     found_results[i].COLOURCODE;
     tr.appendChild(pd);
     tr.appendChild(cc);
-    //tr.appendChild(acc);
+    tr.appendChild(ccn);
     tr.appendChild(cn);
     tr.appendChild(bc);
     tr.appendChild(pack_size);
