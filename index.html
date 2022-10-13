@@ -65,7 +65,7 @@
               <th>Colour you would like to complement</th>
               <th>Product Name</th>
               <th>Bedec Complementry Colour Cards </th>
-              <th>Qty of results</th>
+              
               <th>Search</th>
             </thead>
             <tbody>
@@ -141,14 +141,7 @@
               </td>
        
 
-              <td>
-                <select class="form-control" id="limit_results">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                </select>
-              </td>
+  
 
               <td>
                 <button class="btn btn-primary" onclick="SearchCodes()">
@@ -157,42 +150,17 @@
               </td>
             </tbody>
           </table>
-          <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              
-              <button style="font-size:13px;" data-toggle="collapse" class="nav-link" data-bs-toggle="tab" data-bs-target="#hint1" type="button" role="tab" >Show Hint</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button style="font-size:13px;"class="btn btn-primary nav-link" data-bs-toggle="tab" data-bs-target="#hint_hide" type="button" role="tab" >Hide Hint</button>
-            </li>
-          </ul> -->
-          <!-- <div class="collapse multi-collapse" id="hint1">
-            <div class="card card-body">
-              <b>
-              AL=	Albany<br>
-              AS=	Annie Sloan<br>
-              DG=	Designers Guild<br>
-              DH=	Dulux Heritage<br>
-              EB=	Earthborn<br>
-              FB=	Farrow & Ball<br>
-              GB=	Graham & Brown<br>
-              LA=	Laura Ashley<br>
-              LG=	Little Green<br>
-              LGC=	Little Green Country Colours<br>
-              MLN=	Mylands<br>
-              PPL=	Paint & Paper Lib<br>
-              SA=	Sandersons<br>
-              ZO=	Zoffany<br>
-            </b>
-            </div>
-            <div class="tab-pane fade show " id="hint_hide" role="tabpanel"></div>
-        </div> -->
+
         </div>
         <div class="row justify-content-center mt-4">
           <h4 id="no_results" style="display: none;" class="text-danger text-center">Colour not available in the product selected.</h4>
+          <div class="col">
+            <h5 class="text-danger text-center" style="display: none;" id="too_many_results">You have more than 50 options to choose from.<br>Please use the filters above to reduce your options.</h5>
+            
+          </div>
           <table
           id="result_table"
-            class="table table-sm text-center table-striped rounded table-responsive"
+            class="table table-sm text-center table-striped rounded table-responsive table-bordered"
             style="display:none;"
           >
             <thead class="thead-dark">

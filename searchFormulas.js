@@ -56,8 +56,8 @@ function SearchCodes() {
   BarCodeData2;
   BarCodeData3;
   const data = BarCodeData;
-  const limit_results = document.getElementById("limit_results");
-  var limitNum = limit_results.value;
+
+  var limitNum = 50;
   var found_results = [];
   // elm ids
   var product_name = document.getElementById("product_name");
@@ -138,15 +138,21 @@ function SearchCodes() {
   const result_body = document.getElementById("result_body");
   const no_results = document.getElementById("no_results");
   const result_table = document.getElementById("result_table");
-
+  const too_many_results = document.getElementById("too_many_results");
   // if length is 0
   if (found_results.length > 0) {
-    console.log(found_results.length);
     result_table.style.display = "";
     no_results.style.display = "none";
+
+    if (found_results.length == limitNum) {
+      too_many_results.style.display = "";
+    } else {
+      too_many_results.style.display = "none";
+    }
   } else {
     no_results.style.display = "";
     result_table.style.display = "none";
+    too_many_results.style.display = "none";
   }
   result_body.innerHTML = "";
   for (i = 0; i < found_results.length; i++) {
@@ -191,18 +197,6 @@ function SearchCodes() {
     tr.appendChild(select_td);
 
     result_body.appendChild(tr);
-
-    // const barcode_svg = document.createElementNS(
-    //   "http://www.w3.org/2000/svg",
-    //   "svg"
-    // );
-    // barcode_svg.className.baseVal = "rows_bardcode_" + i;
-    // What info should be in js barcode
-    // $(".rows_bardcode_" + i).JsBarcode(found_results[i].COLOURCODE, {
-    //   width: 0.8,
-    //   height: 50,
-    //   displayValue: false,
-    // });
   }
 }
 
