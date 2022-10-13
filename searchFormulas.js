@@ -84,10 +84,7 @@ function SearchCodes() {
     // If both drop downs are selected
     if (product_name.value != "any" && card_name.value != "any") {
       // if it does not exist, continue loop
-      if (
-        productName.includes(colourCodeArr[product_name.value]) &&
-        cardName.includes(cardNameArr[card_name.value])
-      ) {
+      if (productName.includes(colourCodeArr[product_name.value]) && cardName.includes(cardNameArr[card_name.value])) {
         data_match = data[i];
       } else {
         continue;
@@ -124,22 +121,13 @@ function SearchCodes() {
     if (colour_name.value.length > 0) {
       //console.log(data[i], colourName, colour_name.value.toLowerCase());
       // 1) check if data match IS SET, then look for colour name
-      if (
-        (colourCode.includes(colour_name.value.toLowerCase()) ||
-          AltcolourCode.includes(colour_name.value.toLowerCase()) ||
-          colourName.includes(colour_name.value.toLowerCase())) &&
-        data_match
-      ) {
+      if ((colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) && data_match) {
         found_results.push(data[i]);
         continue;
       }
       // If data match IS NOT SET then look for values outside of data set
       if (product_name.value == "any" && card_name.value == "any") {
-        if (
-          colourCode.includes(colour_name.value.toLowerCase()) ||
-          AltcolourCode.includes(colour_name.value.toLowerCase()) ||
-          colourName.includes(colour_name.value.toLowerCase())
-        ) {
+        if (colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) {
           found_results.push(data[i]);
           continue;
         }
@@ -148,6 +136,18 @@ function SearchCodes() {
   }
   // put into body
   const result_body = document.getElementById("result_body");
+  const no_results = document.getElementById("no_results");
+  const result_table = document.getElementById("result_table");
+
+  // if length is 0
+  if (found_results.length > 0) {
+    console.log(found_results.length);
+    result_table.style.display = "";
+    no_results.style.display = "none";
+  } else {
+    no_results.style.display = "";
+    result_table.style.display = "none";
+  }
   result_body.innerHTML = "";
   for (i = 0; i < found_results.length; i++) {
     const tr = document.createElement("tr");
@@ -176,16 +176,7 @@ function SearchCodes() {
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
-    select_btn.setAttribute(
-      "onclick",
-      "ViewBarcode('" +
-        found_results[i].BrewersProductCode +
-        "','" +
-        found_results[i].BedecProductBarcode +
-        "','" +
-        found_results[i].BrewersProductCode +
-        "')"
-    );
+    select_btn.setAttribute("onclick", "ViewBarcode('" + found_results[i].BrewersProductCode + "','" + found_results[i].BedecProductBarcode + "','" + found_results[i].BrewersProductCode + "')");
 
     select_td.appendChild(select_btn);
 

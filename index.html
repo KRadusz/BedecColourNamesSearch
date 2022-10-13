@@ -62,13 +62,20 @@
             style="table-layout: fixed; word-wrap: break-word"
           >
             <thead class="thead-dark">
-              <th>Product Name</th>
-              <th>Card Name </th>
               <th>Colour you would like to complement</th>
+              <th>Product Name</th>
+              <th>Bedec Complementry Colour Cards </th>
               <th>Qty of results</th>
               <th>Search</th>
             </thead>
             <tbody>
+              <td>
+                <input
+                  id="colour_name"
+                  placeholder="Colour Name"
+                  class="text-center form-control"
+                />
+              </td>
               <td>
                 <select class="form-control" id="product_name">
                   <option selected value="any">Any</option>
@@ -105,27 +112,21 @@
                   <option value="BS5">British Standard 5252F</option>
 
                   <option value="NCSSE">NCS Second Edition 2009</option>
-                  <option value="PPLIBAC">
-                    Bedec Complementry Colours - PPL
-                  </option>
-                  <option value="DGAC">Bedec Complementry Colours - DG</option>
-                  <option value="DHAC">Bedec Complementry Colours - DH</option>
-                  <option value="EAC">Bedec Complementry Colours - EB</option>
-                  <option value="FBAC">Bedec Complementry Colours - FB</option>
-                  <option value="GBAC">Bedec Complementry Colours - GB</option>
-                  <option value="LAAC">Bedec Complementry Colours - LA</option>
-                  <option value="AAC">Bedec Complementry Colours - AL</option>
-                  <option value="ASAC">Bedec Complementry Colours - AS</option>
-                  <option value="LGCOEAC">
-                    Bedec Complementry Colours - LGC
-                  </option>
-                  <option value="LGAC">Bedec Complementry Colours - LG</option>
-                  <option value="MLNAC">
-                    Bedec Complementry Colours - MLN
-                  </option>
+                  <option value="PPLIBAC">Paint & Paper Lib</option>
+                  <option value="DGAC">Designers Guild</option>
+                  <option value="DHAC">Dulux Heritage</option>
+                  <option value="EAC">Earthborn</option>
+                  <option value="FBAC">Farrow & Ball</option>
+                  <option value="GBAC">Graham & Brown</option>
+                  <option value="LAAC">Laura Ashley</option>
+                  <option value="AAC">Albany</option>
+                  <option value="ASAC">Annie Sloan</option>
+                  <option value="LGCOEAC">Little Green Country Colours</option>
+                  <option value="LGAC">Little Green</option>
+                  <option value="MLNAC">Mylands</option>
 
-                  <option value="SAC">Bedec Complementry Colours - SA</option>
-                  <option value="ZAC">Bedec Complementry Colours - ZO</option>
+                  <option value="SAC">Sandersons</option>
+                  <option value="ZAC">Zoffany</option>
                   <option value="CCBPM">CC Bedec - Barn Paint - Matt</option>
                   <option value="CCBPS">CC Bedec - Barn Paint - Satin</option>
                   <option value="CCBPSG">
@@ -138,13 +139,7 @@
                   <option value="CCBMSPGL">CC Bedec - MSP Gloss</option>
                 </select>
               </td>
-              <td>
-                <input
-                  id="colour_name"
-                  placeholder="Colour Name"
-                  class="text-center form-control"
-                />
-              </td>
+       
 
               <td>
                 <select class="form-control" id="limit_results">
@@ -162,7 +157,7 @@
               </td>
             </tbody>
           </table>
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               
               <button style="font-size:13px;" data-toggle="collapse" class="nav-link" data-bs-toggle="tab" data-bs-target="#hint1" type="button" role="tab" >Show Hint</button>
@@ -170,8 +165,8 @@
             <li class="nav-item" role="presentation">
               <button style="font-size:13px;"class="btn btn-primary nav-link" data-bs-toggle="tab" data-bs-target="#hint_hide" type="button" role="tab" >Hide Hint</button>
             </li>
-          </ul>
-          <div class="collapse multi-collapse" id="hint1">
+          </ul> -->
+          <!-- <div class="collapse multi-collapse" id="hint1">
             <div class="card card-body">
               <b>
               AL=	Albany<br>
@@ -190,15 +185,15 @@
               ZO=	Zoffany<br>
             </b>
             </div>
-            <div class="tab-pane fade show " id="hint_hide" role="tabpanel" > 
-           </div>
-        </div>
+            <div class="tab-pane fade show " id="hint_hide" role="tabpanel"></div>
+        </div> -->
         </div>
         <div class="row justify-content-center mt-4">
-          <h5 class="text-center">Results</h5>
+          <h4 id="no_results" style="display: none;" class="text-danger text-center">Colour not available in the product selected.</h4>
           <table
+          id="result_table"
             class="table table-sm text-center table-striped rounded table-responsive"
-            style="table-layout: fixed; word-wrap: break-word"
+            style="display:none;"
           >
             <thead class="thead-dark">
               <th>Product Name</th>
