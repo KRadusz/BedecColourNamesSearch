@@ -63,6 +63,7 @@ function SearchCodes() {
   var product_name = document.getElementById("product_name");
   var card_name = document.getElementById("card_name");
   var colour_name = document.getElementById("colour_name");
+  var pack_size = document.getElementById("pack_size");
 
   for (i = 0; i < data.length; i++) {
     // break if enough found
@@ -84,7 +85,7 @@ function SearchCodes() {
     // If both drop downs are selected
     if (product_name.value != "any" && card_name.value != "any") {
       // if it does not exist, continue loop
-      if (productName.includes(colourCodeArr[product_name.value]) && cardName.includes(cardNameArr[card_name.value])) {
+      if (productName.includes(colourCodeArr[product_name.value]) && cardName.includes(cardNameArr[card_name.value]) && data[i].PackSize == pack_size.value) {
         data_match = data[i];
       } else {
         continue;
@@ -95,7 +96,7 @@ function SearchCodes() {
       // check if product has value to select
       if (product_name.value != "any") {
         // if it does not exist, continue loop
-        if (productName.includes(colourCodeArr[product_name.value])) {
+        if (productName.includes(colourCodeArr[product_name.value]) && data[i].PackSize == pack_size.value) {
           data_match = data[i];
         } else {
           continue;
@@ -104,7 +105,7 @@ function SearchCodes() {
 
       // check if card name has value to select
       if (card_name.value != "any")
-        if (cardName.includes(cardNameArr[card_name.value])) {
+        if (cardName.includes(cardNameArr[card_name.value]) && data[i].PackSize == pack_size.value) {
           data_match = data[i];
         } else {
           continue;
@@ -112,7 +113,7 @@ function SearchCodes() {
     }
 
     // If colour name input has no value
-    if (data_match && colour_name.value.length == 0) {
+    if (data_match && colour_name.value.length == 0 && data[i].PackSize == pack_size.value) {
       found_results.push(data[i]);
       continue;
     }
@@ -121,13 +122,21 @@ function SearchCodes() {
     if (colour_name.value.length > 0) {
       //console.log(data[i], colourName, colour_name.value.toLowerCase());
       // 1) check if data match IS SET, then look for colour name
-      if ((colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) && data_match) {
+      if (
+        (colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) &&
+        data_match &&
+        data[i].PackSize == pack_size.value
+      ) {
         found_results.push(data[i]);
         continue;
       }
       // If data match IS NOT SET then look for values outside of data set
       if (product_name.value == "any" && card_name.value == "any") {
-        if (colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) {
+        if (
+          (colourCode.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value) ||
+          (AltcolourCode.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value) ||
+          (colourName.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value)
+        ) {
           found_results.push(data[i]);
           continue;
         }
