@@ -47,14 +47,15 @@ cardNameArr = {
   ZAC: "Bedec Complementry Colours - ZO",
 };
 
-BarCodeData1.push(BarCodeData2);
-BarCodeData1.push(BarCodeData3);
-BarCodeData = BarCodeData1;
+var BarCodeData = [];
+$(document).ready(function () {
+  join1 = BarCodeData1.concat(BarCodeData2);
+  join2 = join1.concat(BarCodeData3);
+
+  BarCodeData = join2;
+});
 
 function SearchCodes() {
-  BarCodeData1;
-  BarCodeData2;
-  BarCodeData3;
   const data = BarCodeData;
 
   var limitNum = 50;
@@ -120,7 +121,6 @@ function SearchCodes() {
 
     // Check if there is also info in input fields
     if (colour_name.value.length > 0) {
-      //console.log(data[i], colourName, colour_name.value.toLowerCase());
       // 1) check if data match IS SET, then look for colour name
       if (
         (colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) &&
