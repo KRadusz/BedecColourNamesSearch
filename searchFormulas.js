@@ -49,10 +49,11 @@ cardNameArr = {
 
 var BarCodeData = [];
 $(document).ready(function () {
-  join1 = BarCodeData1.concat(BarCodeData2);
-  join2 = join1.concat(BarCodeData3);
+  join1 = BarCodeData0.concat(BarCodeData1);
+  join2 = join1.concat(BarCodeData2);
+  join3 = join2.concat(BarCodeData3);
 
-  BarCodeData = join2;
+  BarCodeData = join3;
 });
 
 function SearchCodes() {
@@ -86,7 +87,11 @@ function SearchCodes() {
     // If both drop downs are selected
     if (product_name.value != "any" && card_name.value != "any") {
       // if it does not exist, continue loop
-      if (productName.includes(colourCodeArr[product_name.value]) && cardName.includes(cardNameArr[card_name.value]) && data[i].PackSize == pack_size.value) {
+      if (
+        productName.includes(colourCodeArr[product_name.value]) &&
+        cardName.includes(cardNameArr[card_name.value]) &&
+        data[i].PackSize == pack_size.value
+      ) {
         data_match = data[i];
       } else {
         continue;
@@ -97,7 +102,10 @@ function SearchCodes() {
       // check if product has value to select
       if (product_name.value != "any") {
         // if it does not exist, continue loop
-        if (productName.includes(colourCodeArr[product_name.value]) && data[i].PackSize == pack_size.value) {
+        if (
+          productName.includes(colourCodeArr[product_name.value]) &&
+          data[i].PackSize == pack_size.value
+        ) {
           data_match = data[i];
         } else {
           continue;
@@ -106,7 +114,10 @@ function SearchCodes() {
 
       // check if card name has value to select
       if (card_name.value != "any")
-        if (cardName.includes(cardNameArr[card_name.value]) && data[i].PackSize == pack_size.value) {
+        if (
+          cardName.includes(cardNameArr[card_name.value]) &&
+          data[i].PackSize == pack_size.value
+        ) {
           data_match = data[i];
         } else {
           continue;
@@ -114,7 +125,11 @@ function SearchCodes() {
     }
 
     // If colour name input has no value
-    if (data_match && colour_name.value.length == 0 && data[i].PackSize == pack_size.value) {
+    if (
+      data_match &&
+      colour_name.value.length == 0 &&
+      data[i].PackSize == pack_size.value
+    ) {
       found_results.push(data[i]);
       continue;
     }
@@ -123,7 +138,9 @@ function SearchCodes() {
     if (colour_name.value.length > 0) {
       // 1) check if data match IS SET, then look for colour name
       if (
-        (colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) &&
+        (colourCode.includes(colour_name.value.toLowerCase()) ||
+          AltcolourCode.includes(colour_name.value.toLowerCase()) ||
+          colourName.includes(colour_name.value.toLowerCase())) &&
         data_match &&
         data[i].PackSize == pack_size.value
       ) {
@@ -133,9 +150,12 @@ function SearchCodes() {
       // If data match IS NOT SET then look for values outside of data set
       if (product_name.value == "any" && card_name.value == "any") {
         if (
-          (colourCode.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value) ||
-          (AltcolourCode.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value) ||
-          (colourName.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value)
+          (colourCode.includes(colour_name.value.toLowerCase()) &&
+            data[i].PackSize == pack_size.value) ||
+          (AltcolourCode.includes(colour_name.value.toLowerCase()) &&
+            data[i].PackSize == pack_size.value) ||
+          (colourName.includes(colour_name.value.toLowerCase()) &&
+            data[i].PackSize == pack_size.value)
         ) {
           found_results.push(data[i]);
           continue;
@@ -191,7 +211,16 @@ function SearchCodes() {
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
-    select_btn.setAttribute("onclick", "ViewBarcode('" + found_results[i].BrewersProductCode + "','" + found_results[i].BedecProductBarcode + "','" + found_results[i].BrewersProductCode + "')");
+    select_btn.setAttribute(
+      "onclick",
+      "ViewBarcode('" +
+        found_results[i].BrewersProductCode +
+        "','" +
+        found_results[i].BedecProductBarcode +
+        "','" +
+        found_results[i].BrewersProductCode +
+        "')"
+    );
 
     select_td.appendChild(select_btn);
 
