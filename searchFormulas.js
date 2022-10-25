@@ -16,8 +16,8 @@ colourCodeArr = {
 };
 
 cardNameArr = {
-  AAC: "Bedec Complementry Colours - AL",
-  ASAC: "Bedec Complementry Colours - AS",
+  AAC: "Bedec Complementary Colours - AL",
+  ASAC: "Bedec Complementary Colours - AS",
   BS3: "British Standard 381C",
   BS4: "British Standard 4800",
   BS5: "British Standard 5252F",
@@ -30,23 +30,23 @@ cardNameArr = {
   CCBMSPM: "CC Bedec - MSP - Matt",
   CCBMSS: "CC Bedec - MSP - Satin",
   CCBMSPGL: "CC Bedec - MSP Gloss",
-  DGAC: "Bedec Complementry Colours - DG",
-  DHAC: "Bedec Complementry Colours - DH",
-  EAC: "Bedec Complementry Colours - EB",
-  FBAC: "Bedec Complementry Colours - FB",
+  DGAC: "Bedec Complementary Colours - DG",
+  DHAC: "Bedec Complementary Colours - DH",
+  EAC: "Bedec Complementary Colours - EB",
+  FBAC: "Bedec Complementary Colours - FB",
   FBCBN: "Bedec Complementary Colours - FBCBN",
-  GBAC: "Bedec Complementry Colours - GB",
-  LAAC: "Bedec Complementry Colours - LA",
-  LGAC: "Bedec Complementry Colours - LG",
-  LGCOEAC: "Bedec Complementry Colours - LGC",
-  MLNAC: "Bedec Complementry Colours - MLN",
+  GBAC: "Bedec Complementary Colours - GB",
+  LAAC: "Bedec Complementary Colours - LA",
+  LGAC: "Bedec Complementary Colours - LG",
+  LGCOEAC: "Bedec Complementary Colours - LGC",
+  MLNAC: "Bedec Complementary Colours - MLN",
   NCSSE: "NCS Second Edition 2009",
   PPLIBAC: "Bedec Complementary Colours - PPL",
 
   RAL: "RAL 840HR",
   RALBS: "RAL 840HR Bedec Satin",
-  SAC: "Bedec Complementry Colours - SA",
-  ZAC: "Bedec Complementry Colours - ZO",
+  SAC: "Bedec Complementary Colours - SA",
+  ZAC: "Bedec Complementary Colours - ZO",
 };
 
 var BarCodeData = [];
@@ -177,9 +177,9 @@ function SearchCodes() {
     cc.innerHTML = found_results[i].COLOURCODE;
     const ccn = document.createElement("td");
     // if it includes long txt
-    if (found_results[i].CARDNAME.includes("Bedec Complementry Colours")) {
+    if (found_results[i].CARDNAME.includes("Bedec Complementary Colours")) {
       var split_info = found_results[i].CARDNAME;
-      ccn.innerHTML = split_info.split("Bedec Complementry Colours - ")[1];
+      ccn.innerHTML = split_info.split("Bedec Complementary Colours - ")[1];
     } else {
       ccn.innerHTML = found_results[i].CARDNAME;
     }
