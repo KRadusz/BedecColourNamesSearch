@@ -1,18 +1,18 @@
 colourCodeArr = {
-  AAEE: "Aqua Advanced Eggshell Exterior",
-  AAGE: "Aqua Advanced Gloss Exterior",
-  AAME: "Aqua Advanced Matt Exterior",
-  AASE: "Aqua Advanced Satin Exterior",
-  BME: "Barn Matt Exterior",
-  BSE: "Barn Satin Exterior",
-  BSGE: "Barn Semi Gloss Exterior",
-  EFE: "Extra - Flex Exterior",
+  AAEE: "Aqua Advanced Eggshell",
+  AAGE: "Aqua Advanced Gloss",
+  AAME: "Aqua Advanced Matt",
+  AASE: "Aqua Advanced Satin",
+  BME: "Barn Matt",
+  BSE: "Barn Satin",
+  BSGE: "Barn Semi Gloss",
+  EFE: "Extra - Flex",
   FPI: "Floor Paint Interior",
   IFI: "Interior Flex Interior",
-  MSFGE: "Multi Surface Paint Gloss Exterior",
-  MSFME: "Multi Surface Paint Matt Exterior",
-  MSFSE: "Multi Surface Paint Satin Exterior",
-  SDMI: "Spray Daylight Matt Interior",
+  MSFGE: "Multi Surface Paint Gloss",
+  MSFME: "Multi Surface Paint Matt",
+  MSFSE: "Multi Surface Paint Satin",
+  SDMI: "Spray Daylight Matt",
 };
 
 cardNameArr = {
@@ -77,6 +77,7 @@ function SearchCodes() {
     if (data[i].COLOURCODE == null) {
       continue;
     }
+
     colourCode = data[i].COLOURCODE.toLowerCase();
     AltcolourCode = data[i].ALTCOLOURCODE.toLowerCase();
     colourName = data[i].COLOURNAME.toLowerCase();
@@ -90,7 +91,7 @@ function SearchCodes() {
     if (product_name.value != "any" && card_name.value != "any") {
       // if it does not exist, continue loop
 
-      if (productName.includes(colourCodeArr[product_name.value]) && cardName.includes(cardNameArr[card_name.value]) && data[i].PackSize == pack_size.value) {
+      if (productName.includes(colourCodeArr[product_name.value]) && cardName.includes(cardNameArr[card_name.value]) && data[i].PACKSIZE == pack_size.value) {
         data_match = data[i];
       } else {
         continue;
@@ -101,7 +102,7 @@ function SearchCodes() {
       // check if product has value to select
       if (product_name.value != "any") {
         // if it does not exist, continue loop
-        if (productName.includes(colourCodeArr[product_name.value]) && data[i].PackSize == pack_size.value) {
+        if (productName.includes(colourCodeArr[product_name.value]) && data[i].PACKSIZE == pack_size.value) {
           data_match = data[i];
         } else {
           continue;
@@ -110,7 +111,7 @@ function SearchCodes() {
 
       // check if card name has value to select
       if (card_name.value != "any") {
-        if (cardName.includes(cardNameArr[card_name.value]) && data[i].PackSize == pack_size.value) {
+        if (cardName.includes(cardNameArr[card_name.value]) && data[i].PACKSIZE == pack_size.value) {
           data_match = data[i];
         } else {
           continue;
@@ -119,7 +120,7 @@ function SearchCodes() {
     }
 
     // If colour name input has no value
-    if (data_match && colour_name.value.length == 0 && data[i].PackSize == pack_size.value) {
+    if (data_match && colour_name.value.length == 0 && data[i].PACKSIZE == pack_size.value) {
       found_results.push(data[i]);
       continue;
     }
@@ -130,7 +131,7 @@ function SearchCodes() {
       if (
         (colourCode.includes(colour_name.value.toLowerCase()) || AltcolourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase())) &&
         data_match &&
-        data[i].PackSize == pack_size.value
+        data[i].PACKSIZE == pack_size.value
       ) {
         found_results.push(data[i]);
         continue;
@@ -138,9 +139,9 @@ function SearchCodes() {
       // If data match IS NOT SET then look for values outside of data set
       if (product_name.value == "any" && card_name.value == "any") {
         if (
-          (colourCode.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value) ||
-          (AltcolourCode.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value) ||
-          (colourName.includes(colour_name.value.toLowerCase()) && data[i].PackSize == pack_size.value)
+          (colourCode.includes(colour_name.value.toLowerCase()) && data[i].PACKSIZE == pack_size.value) ||
+          (AltcolourCode.includes(colour_name.value.toLowerCase()) && data[i].PACKSIZE == pack_size.value) ||
+          (colourName.includes(colour_name.value.toLowerCase()) && data[i].PACKSIZE == pack_size.value)
         ) {
           found_results.push(data[i]);
           continue;
@@ -189,7 +190,7 @@ function SearchCodes() {
     const bc = document.createElement("td");
     bc.innerHTML = found_results[i].BASECODE;
     const pack_size = document.createElement("td");
-    pack_size.innerHTML = found_results[i].PackSize;
+    pack_size.innerHTML = found_results[i].PACKSIZE;
     const rgb_td = document.createElement("td");
     rgb_td.style.backgroundColor = found_results[i].RGB_HTML;
     const select_td = document.createElement("td");
@@ -215,8 +216,13 @@ function SearchCodes() {
 }
 
 function ViewBarcode(product_code, barcode, rgb_colour) {
+  $(window).scrollTop(0);
   const selected_div = document.getElementById("selected_div");
+  const main_cover_div = document.getElementById("main_cover_div");
+  main_cover_div.style.display = "";
+  main_cover_div.style.zIndex = "1";
   selected_div.style.display = "";
+
   const productCode = document.getElementById("product_code_display");
   productCode.innerHTML = product_code;
   const barCode = document.getElementById("barcode_code_display");
@@ -228,5 +234,8 @@ function ViewBarcode(product_code, barcode, rgb_colour) {
 
 function closeView() {
   const selected_div = document.getElementById("selected_div");
+  const main_cover_div = document.getElementById("main_cover_div");
+  main_cover_div.style.display = "none";
+  main_cover_div.style.zIndex = "-1";
   selected_div.style.display = "none";
 }
