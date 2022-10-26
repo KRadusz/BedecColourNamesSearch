@@ -4,7 +4,7 @@ colourCodeArr = {
   AAME: "Aqua Advanced Matt",
   AASE: "Aqua Advanced Satin",
   BME: "Barn Paint Matt",
-  BSE: "Barn Paint Matt Satin",
+  BSE: "Barn Paint Satin",
   BSGE: "Barn Paint Semi Gloss",
   EFE: "Extra - Flex",
   FPI: "Floor Paint Interior",
