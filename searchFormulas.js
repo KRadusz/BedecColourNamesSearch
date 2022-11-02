@@ -217,7 +217,7 @@ function SearchCodes() {
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
 
-    console.log(found_results[i].BedecProductBarcode);
+    console.log(Number(found_results[i].BedecProductBarcode));
     select_btn.setAttribute(
       "onclick",
       "ViewBarcode('" +
@@ -229,8 +229,7 @@ function SearchCodes() {
         "','" +
         pack_size.innerHTML +
         "','" +
-        // Number(found_results[i].BedecProductBarcode) +
-        "NULL" +
+        Number(found_results[i].BedecProductBarcode) +
         "','" +
         found_results[i].BrewersProductCode +
         "')"
