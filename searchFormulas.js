@@ -217,7 +217,6 @@ function SearchCodes() {
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
 
-    console.log(Number(found_results[i].BedecProductBarcode));
     select_btn.setAttribute(
       "onclick",
       "ViewBarcode('" +
@@ -230,6 +229,8 @@ function SearchCodes() {
         pack_size.innerHTML +
         "','" +
         Number(found_results[i].BedecProductBarcode) +
+        "','" +
+        found_results[i].COLOURNAME +
         "','" +
         found_results[i].BrewersProductCode +
         "')"
@@ -257,6 +258,7 @@ function ViewBarcode(
   product_code,
   packsize,
   barcode,
+  colour_name,
   rgb_colour
 ) {
   $(window).scrollTop(0);
@@ -274,6 +276,9 @@ function ViewBarcode(
 
   const productCode = document.getElementById("product_code_display");
   productCode.innerHTML = product_code;
+
+  const ColourName = document.getElementById("colour_name_display");
+  ColourName.innerHTML = colour_name;
 
   const packSize = document.getElementById("pack_size_display");
   packSize.innerHTML = packsize;
