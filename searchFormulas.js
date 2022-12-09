@@ -77,11 +77,13 @@ class FindColours {
         continue;
       }
       // check colour name input
-      if (colour_name.value.length !== 0 && !this.data[i].COLOURNAME.includes(colour_name.value)) {
+      // set colour name to lower
+      var colourName= this.data[i].COLOURNAME.toLowerCase();
+      if (colour_name.value.length !== 0 && !colourName.includes(colour_name.value)) {
         continue;
       }
       // check text in colour name if needed
-      if (this.data[i].COLOURNAME.includes("To Complement*?")) {
+      if (colourName.includes("to complement*?")) {
         this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
       }
 
