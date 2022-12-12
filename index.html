@@ -58,6 +58,7 @@
       <h1 class="text-center">Bedec Search Colour Codes</h1>
       <div class="container mt-3">
         <div class="row justify-content-center">
+          <form onsubmit="return false;">
           <table
             class="table table-sm text-center table-striped rounded table-responsive"
             style="table-layout: fixed; word-wrap: break-word"
@@ -107,6 +108,12 @@
                   <option selected value="any">Any</option>
                   <option value="BP">Bedec Products</option>
                   <option value="RAL">RAL 840HR</option>
+
+                  <option value="DLXWS">Dulux - Weather Shield Colours</option>
+                  <option value="FBA">Farrow & Ball - Archive Colours</option>
+                  <option value="SAD">Sadolin Colours</option>
+                  <option value="STX">Sandtex Colours</option>
+
                   <option value="BS3">British Standard 381C</option>
                   <option value="BS4">British Standard 4800</option>
                   <option value="BS5">British Standard 5252F</option>
@@ -142,9 +149,9 @@
               <td>
                 <select class="form-control" id="pack_size">
                   <option value="750 ML">750 ML</option>
-                  <option value="1 LITRE">1 Litre</option>
-                  <option value="2.5 LITRE">2.5 Litre</option>
-                  <option selected value="5 LITRE">5 Litre</option>
+                  <option value="1 L">1 Litre</option>
+                  <option value="2.5 L">2.5 Litre</option>
+                  <option selected value="5 L">5 Litre</option>
                 </select>
               </td>
   
@@ -156,7 +163,7 @@
               </td>
             </tbody>
           </table>
-
+</form>
         </div>
         <div class="row justify-content-center mt-4">
           <h4 id="no_results" style="display: none;" class="text-danger text-center">Colour not available in the product selected.</h4>
@@ -262,12 +269,14 @@
       </div>
     </div>
   </body>
-
-  <script type="text/javascript" src="export_0.js"></script>
-  <script type="text/javascript" src="export_1.js"></script>
-  <script type="text/javascript" src="export_2.js"></script>
-  <script type="text/javascript" src="export_3.js"></script>
+  <script type="text/javascript" src="searchFormulas.js"></script>
+  <script type="text/javascript" src="file0.js"></script>
+  <script type="text/javascript" src="file1.js"></script>
+  <script type="text/javascript" src="file2.js"></script> 
+  <script type="text/javascript" src="file3.js"></script>
+  <script type="text/javascript" src="file4.js"></script>
+  <script type="text/javascript" src="file5.js"></script>
 
   <script type="text/javascript" src="JsBarcode.all.min.js"></script>
-  <script type="text/javascript" src="searchFormulas.js"></script>
+  
 </html>

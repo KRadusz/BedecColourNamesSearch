@@ -42,12 +42,65 @@ cardNameArr = {
   MLNAC: "Bedec Complementary Colours - MLN",
   NCSSE: "NCS Second Edition 2009",
   PPLIBAC: "Bedec Complementary Colours - PPL",
-
   RAL: "RAL 840HR",
   RALBS: "RAL 840HR Bedec Satin",
   SAC: "Bedec Complementary Colours - SA",
   ZAC: "Bedec Complementary Colours - ZO",
+  DLXWS:"Bedec Complementary Colours - DLXWS",
+  FBA:"Bedec Complementary Colours - FBA",
+  SAD:"Bedec Complementary Colours - SAD",
+  STX:"Bedec Complementary Colours - STX"
+
 };
+
+class FindColours {
+  constructor(data) {
+    this.data = data;
+  }
+  searchValues() {
+    var limitNum = 50;
+    var loopNum = 0;
+    var found_results = [];
+    // elm ids
+    var product_name = document.getElementById("product_name");
+    var card_name = document.getElementById("card_name");
+    var colour_name = document.getElementById("colour_name");
+    var pack_size = document.getElementById("pack_size");
+    for (var i = 0; i < this.data.length; i++) {
+      // check can size
+      if (this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
+        continue;
+      }
+      // check Product name input
+      if (product_name.value !== "any" && this.data[i].PRODUCTNAME.toLowerCase() !== colourCodeArr[product_name.value].toLowerCase()) {
+        continue;
+      }
+
+      // check colour card name name input
+      if (card_name.value !== "any" && this.data[i].CARDNAME.toLowerCase() !== cardNameArr[card_name.value].toLowerCase()) {
+        continue;
+      }
+      // check colour name input
+      // set colour name to lower
+      var colourName= this.data[i].COLOURNAME.toLowerCase();
+      if (colour_name.value.length !== 0 && !colourName.includes(colour_name.value)) {
+        continue;
+      }
+      // check text in colour name if needed
+      if (colourName.includes("to complement*?")) {
+        this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
+      }
+
+      // go through loop num to adjust max displayed limit num
+      loopNum += 1;
+      if (loopNum == limitNum) {
+        break;
+      }
+      found_results.push(this.data[i]);
+    }
+    return found_results;
+  }
+}
 
 var BarCodeData = [];
 $(document).ready(function () {
@@ -59,115 +112,9 @@ $(document).ready(function () {
 });
 
 function SearchCodes() {
-  const data = BarCodeData;
-
+  var ColourVal = new FindColours(BarCodeData);
+  var found_results = ColourVal.searchValues();
   var limitNum = 50;
-  var found_results = [];
-  // elm ids
-  var product_name = document.getElementById("product_name");
-  var card_name = document.getElementById("card_name");
-  var colour_name = document.getElementById("colour_name");
-  var pack_size = document.getElementById("pack_size");
-
-  for (i = 0; i < data.length; i++) {
-    // break if enough found
-    if (found_results.length == limitNum) {
-      break;
-    }
-    if (data[i].COLOURCODE == null) {
-      continue;
-    }
-
-    colourCode = data[i].COLOURCODE.toLowerCase();
-    AltcolourCode = data[i].ALTCOLOURCODE.toLowerCase();
-    colourName = data[i].COLOURNAME.toLowerCase();
-    productName = data[i].PRODUCTNAME;
-    cardName = data[i].CARDNAME;
-
-    // Check statements...
-    // Check if product item does not matches
-    data_match = false;
-    // If both drop downs are selected
-    if (product_name.value != "any" && card_name.value != "any") {
-      // if it does not exist, continue loop
-
-      if (
-        productName.includes(colourCodeArr[product_name.value]) &&
-        cardName.includes(cardNameArr[card_name.value]) &&
-        data[i].PACKSIZE == pack_size.value
-      ) {
-        data_match = data[i];
-      } else {
-        continue;
-      }
-    }
-    // else, work through them one by one
-    else {
-      // check if product has value to select
-      if (product_name.value != "any") {
-        // if it does not exist, continue loop
-        if (
-          productName.includes(colourCodeArr[product_name.value]) &&
-          data[i].PACKSIZE == pack_size.value
-        ) {
-          data_match = data[i];
-        } else {
-          continue;
-        }
-      }
-
-      // check if card name has value to select
-      if (card_name.value != "any") {
-        if (
-          cardName.includes(cardNameArr[card_name.value]) &&
-          data[i].PACKSIZE == pack_size.value
-        ) {
-          data_match = data[i];
-        } else {
-          continue;
-        }
-      }
-    }
-
-    // If colour name input has no value
-    if (
-      data_match &&
-      colour_name.value.length == 0 &&
-      data[i].PACKSIZE == pack_size.value
-    ) {
-      found_results.push(data[i]);
-      continue;
-    }
-
-    // Check if there is also info in input fields
-    if (colour_name.value.length > 0) {
-      // 1) check if data match IS SET, then look for colour name
-      if (
-        (colourCode.includes(colour_name.value.toLowerCase()) ||
-          AltcolourCode.includes(colour_name.value.toLowerCase()) ||
-          colourName.includes(colour_name.value.toLowerCase())) &&
-        data_match &&
-        data[i].PACKSIZE == pack_size.value
-      ) {
-        found_results.push(data[i]);
-        continue;
-      }
-      // If data match IS NOT SET then look for values outside of data set
-      if (product_name.value == "any" && card_name.value == "any") {
-        if (
-          (colourCode.includes(colour_name.value.toLowerCase()) &&
-            data[i].PACKSIZE == pack_size.value) ||
-          (AltcolourCode.includes(colour_name.value.toLowerCase()) &&
-            data[i].PACKSIZE == pack_size.value) ||
-          (colourName.includes(colour_name.value.toLowerCase()) &&
-            data[i].PACKSIZE == pack_size.value)
-        ) {
-          found_results.push(data[i]);
-          continue;
-        }
-      }
-    }
-  }
   // put into body
   const result_body = document.getElementById("result_body");
   const no_results = document.getElementById("no_results");
