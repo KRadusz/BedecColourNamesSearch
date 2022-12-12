@@ -67,10 +67,7 @@ class FindColours {
     var colour_name = document.getElementById("colour_name");
     var pack_size = document.getElementById("pack_size");
     for (var i = 0; i < this.data.length; i++) {
-      // check can size
-      if (this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
-        continue;
-      }
+
       // check Product name input
       if (product_name.value !== "any" && this.data[i].PRODUCTNAME.toLowerCase() !== colourCodeArr[product_name.value].toLowerCase()) {
         continue;
@@ -80,23 +77,42 @@ class FindColours {
       if (card_name.value !== "any" && this.data[i].CARDNAME.toLowerCase() !== cardNameArr[card_name.value].toLowerCase()) {
         continue;
       }
-      // check colour name input
-      // set colour name to lower
-      var colourName= this.data[i].COLOURNAME.toLowerCase();
-      if (colour_name.value.length !== 0 && !colourName.includes(colour_name.value)) {
+    
+      // check can size
+      if (this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
         continue;
       }
-      // check text in colour name if needed
-      if (colourName.includes("to complement*?")) {
-        this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
-      }
+   
 
-      // go through loop num to adjust max displayed limit num
+    
+
+
+
+  // check colour name input
+      // set colour name to lower
+      var colourName= this.data[i].COLOURNAME.toLowerCase();
+      var colourCode= this.data[i].COLOURCODE.toLowerCase();
+      var colourAltColour= this.data[i].ALTCOLOURCODE.toLowerCase();
+
+  // check text in colour name if needed
+  if (colourName.includes("to complement*?")) {
+    this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
+  }
+
+      if (
+        colourCode.includes(colour_name.value.toLowerCase()) ||
+        colourName.includes(colour_name.value.toLowerCase()) ||
+        colourAltColour.includes(colour_name.value.toLowerCase() )
+      ) {
+        found_results.push(this.data[i]);
+              // go through loop num to adjust max displayed limit num
       loopNum += 1;
       if (loopNum == limitNum) {
         break;
       }
-      found_results.push(this.data[i]);
+      }
+
+      
     }
     return found_results;
   }
@@ -107,8 +123,10 @@ $(document).ready(function () {
   join1 = BarCodeData0.concat(BarCodeData1);
   join2 = join1.concat(BarCodeData2);
   join3 = join2.concat(BarCodeData3);
-
-  BarCodeData = join3;
+  join4= join3.concat(BarCodeData4)
+  join5= join4.concat(BarCodeData5)
+  
+  BarCodeData = join5;
 });
 
 function SearchCodes() {
