@@ -42,11 +42,15 @@ cardNameArr = {
   MLNAC: "Bedec Complementary Colours - MLN",
   NCSSE: "NCS Second Edition 2009",
   PPLIBAC: "Bedec Complementary Colours - PPL",
-
   RAL: "RAL 840HR",
   RALBS: "RAL 840HR Bedec Satin",
   SAC: "Bedec Complementary Colours - SA",
   ZAC: "Bedec Complementary Colours - ZO",
+  DLXWS:"Bedec Complementary Colours - DLXWS",
+  FBA:"Bedec Complementary Colours - FBA",
+  SAD:"Bedec Complementary Colours - SAD",
+  STX:"Bedec Complementary Colours - STX"
+
 };
 
 class FindColours {
