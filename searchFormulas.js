@@ -79,14 +79,11 @@ class FindColours {
       }
     
       // check can size
-      if (this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
+      
+      if (this.data[i].PACKSIZE==null||this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {       
         continue;
       }
    
-
-    
-
-
 
   // check colour name input
       // set colour name to lower
@@ -104,13 +101,13 @@ class FindColours {
         colourName.includes(colour_name.value.toLowerCase()) ||
         colourAltColour.includes(colour_name.value.toLowerCase() )
       ) {
-        found_results.push(this.data[i]);
-              // go through loop num to adjust max displayed limit num
-      loopNum += 1;
-      if (loopNum == limitNum) {
-        break;
-      }
-      }
+          found_results.push(this.data[i]);
+                // go through loop num to adjust max displayed limit num
+          loopNum += 1;
+            if (loopNum == limitNum) {
+              break;
+            }
+        }
 
       
     }
@@ -181,6 +178,8 @@ function SearchCodes() {
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
+
+    console.log(found_results[i].COLOURNAME)
 
     select_btn.setAttribute(
       "onclick",
