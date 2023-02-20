@@ -179,8 +179,6 @@ function SearchCodes() {
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
 
-    console.log(found_results[i].COLOURNAME)
-
     select_btn.setAttribute(
       "onclick",
       "ViewBarcode('" +
