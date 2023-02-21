@@ -46,11 +46,10 @@ cardNameArr = {
   RALBS: "RAL 840HR Bedec Satin",
   SAC: "Bedec Complementary Colours - SA",
   ZAC: "Bedec Complementary Colours - ZO",
-  DLXWS:"Bedec Complementary Colours - DLXWS",
-  FBA:"Bedec Complementary Colours - FBA",
-  SAD:"Bedec Complementary Colours - SAD",
-  STX:"Bedec Complementary Colours - STX"
-
+  DLXWS: "Bedec Complementary Colours - DLXWS",
+  FBA: "Bedec Complementary Colours - FBA",
+  SAD: "Bedec Complementary Colours - SAD",
+  STX: "Bedec Complementary Colours - STX",
 };
 
 class FindColours {
@@ -67,8 +66,12 @@ class FindColours {
     var colour_name = document.getElementById("colour_name");
     var pack_size = document.getElementById("pack_size");
     for (var i = 0; i < this.data.length; i++) {
-
+      // skip if info is null
+      if (!this.data[i].CARDNAME) {
+        continue;
+      }
       // check Product name input
+      // console.log(this.data[i]);
       if (product_name.value !== "any" && this.data[i].PRODUCTNAME.toLowerCase() !== colourCodeArr[product_name.value].toLowerCase()) {
         continue;
       }
@@ -77,39 +80,32 @@ class FindColours {
       if (card_name.value !== "any" && this.data[i].CARDNAME.toLowerCase() !== cardNameArr[card_name.value].toLowerCase()) {
         continue;
       }
-    
+
       // check can size
-      
-      if (this.data[i].PACKSIZE==null||this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {       
+
+      if (this.data[i].PACKSIZE == null || this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
         continue;
       }
-   
 
-  // check colour name input
+      // check colour name input
       // set colour name to lower
-      var colourName= this.data[i].COLOURNAME.toLowerCase();
-      var colourCode= this.data[i].COLOURCODE.toLowerCase();
-      var colourAltColour= this.data[i].ALTCOLOURCODE.toLowerCase();
+      var colourName = this.data[i].COLOURNAME.toLowerCase();
+      var colourCode = this.data[i].COLOURCODE.toLowerCase();
+      var colourAltColour = this.data[i].ALTCOLOURCODE.toLowerCase();
 
-  // check text in colour name if needed
-  if (colourName.includes("to complement*?")) {
-    this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
-  }
+      // check text in colour name if needed
+      if (colourName.includes("to complement*?")) {
+        this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
+      }
 
-      if (
-        colourCode.includes(colour_name.value.toLowerCase()) ||
-        colourName.includes(colour_name.value.toLowerCase()) ||
-        colourAltColour.includes(colour_name.value.toLowerCase() )
-      ) {
-          found_results.push(this.data[i]);
-                // go through loop num to adjust max displayed limit num
-          loopNum += 1;
-            if (loopNum == limitNum) {
-              break;
-            }
+      if (colourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase()) || colourAltColour.includes(colour_name.value.toLowerCase())) {
+        found_results.push(this.data[i]);
+        // go through loop num to adjust max displayed limit num
+        loopNum += 1;
+        if (loopNum == limitNum) {
+          break;
         }
-
-      
+      }
     }
     return found_results;
   }
@@ -120,9 +116,9 @@ $(document).ready(function () {
   join1 = BarCodeData0.concat(BarCodeData1);
   join2 = join1.concat(BarCodeData2);
   join3 = join2.concat(BarCodeData3);
-  join4= join3.concat(BarCodeData4)
-  join5= join4.concat(BarCodeData5)
-  
+  join4 = join3.concat(BarCodeData4);
+  join5 = join4.concat(BarCodeData5);
+
   BarCodeData = join5;
 });
 
@@ -214,15 +210,7 @@ function SearchCodes() {
   }
 }
 
-function ViewBarcode(
-  product_name,
-  base_name,
-  product_code,
-  packsize,
-  barcode,
-  colour_name,
-  rgb_colour
-) {
+function ViewBarcode(product_name, base_name, product_code, packsize, barcode, colour_name, rgb_colour) {
   $(window).scrollTop(0);
   const selected_div = document.getElementById("selected_div");
   const main_cover_div = document.getElementById("main_cover_div");
