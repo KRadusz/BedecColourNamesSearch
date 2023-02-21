@@ -70,6 +70,7 @@ class FindColours {
       if (!this.data[i].CARDNAME) {
         continue;
       }
+
       // check Product name input
       // console.log(this.data[i]);
       if (product_name.value !== "any" && this.data[i].PRODUCTNAME.toLowerCase() !== colourCodeArr[product_name.value].toLowerCase()) {
@@ -174,7 +175,6 @@ function SearchCodes() {
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
-
     select_btn.setAttribute(
       "onclick",
       "ViewBarcode('" +
