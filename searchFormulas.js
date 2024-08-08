@@ -1,3 +1,34 @@
+const urls = [
+  "https://gist.githubusercontent.com/KRadusz/c504616bd607393b99631a40f06f116d/raw/compressed_output_part_1.js",
+  "https://gist.githubusercontent.com/KRadusz/c2782348bc9d8ba50c7e61efc8b2ac71/raw/compressed_output_part_2.js",
+  "https://gist.githubusercontent.com/KRadusz/0fa219bc76ad51543d40779a4e32ee21/raw/compressed_output_part_3.js",
+];
+
+async function fetchAndConcatenate(urls) {
+  try {
+    // Fetch all the URLs
+    const responses = await Promise.all(urls.map((url) => fetch(url)));
+
+    // Check if all responses are OK
+    const allOk = responses.every((response) => response.ok);
+    if (!allOk) {
+      throw new Error("Failed to fetch one or more parts");
+    }
+
+    // Get the text content from all responses
+    const parts = await Promise.all(responses.map((response) => response.text()));
+
+    // Concatenate the parts
+    const concatenated = parts.join("");
+
+    // Assuming the concatenated result needs to be evaluated as JavaScript
+    eval(concatenated);
+    return BarCodeData;
+  } catch (error) {
+    console.error("Error fetching or concatenating parts:", error);
+  }
+}
+
 colourCodeArr = {
   AAEE: "Aqua Advanced Eggshell",
   AAGE: "Aqua Advanced Gloss",
@@ -112,18 +143,10 @@ class FindColours {
   }
 }
 
-var BarCodeData = [];
-$(document).ready(function () {
-  join1 = BarCodeData0.concat(BarCodeData1);
-  join2 = join1.concat(BarCodeData2);
-  join3 = join2.concat(BarCodeData3);
-  join4 = join3.concat(BarCodeData4);
-  join5 = join4.concat(BarCodeData5);
+async function SearchCodes() {
+  // Call the function
 
-  BarCodeData = join5;
-});
-
-function SearchCodes() {
+  const BarCodeData = await fetchAndConcatenate(urls);
   var ColourVal = new FindColours(BarCodeData);
   var found_results = ColourVal.searchValues();
   var limitNum = 50;
