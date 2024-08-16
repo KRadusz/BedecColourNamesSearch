@@ -129,22 +129,25 @@ class FindColours {
       if (typeof this.data[i].ALTCOLOURCODE === "string" && this.data[i].ALTCOLOURCODE.trim() !== "") {
         var colourAltColour = this.data[i].ALTCOLOURCODE.toLowerCase();
       }
-
-      // check text in colour name if needed
-      if (colourName && colourName.includes("to complement*?")) {
-        const splitParts = this.data[i].COLOURNAME.split("To Complement*?");
-        if (splitParts.length > 1) {
-          this.data[i].COLOURNAME = splitParts[1];
+      try {
+        // check text in colour name if needed
+        if (colourName && colourName.includes("to complement*?")) {
+          const splitParts = this.data[i].COLOURNAME.split("To Complement*?");
+          if (splitParts.length > 1) {
+            this.data[i].COLOURNAME = splitParts[1];
+          }
         }
-      }
 
-      if (colourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase()) || colourAltColour.includes(colour_name.value.toLowerCase())) {
-        found_results.push(this.data[i]);
-        // go through loop num to adjust max displayed limit num
-        loopNum += 1;
-        if (loopNum == limitNum) {
-          break;
+        if (colourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase()) || colourAltColour.includes(colour_name.value.toLowerCase())) {
+          found_results.push(this.data[i]);
+          // go through loop num to adjust max displayed limit num
+          loopNum += 1;
+          if (loopNum == limitNum) {
+            break;
+          }
         }
+      } catch (error) {
+        continue;
       }
     }
 
