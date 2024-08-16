@@ -110,7 +110,7 @@ class FindColours {
       }
 
       // check can size
-      if (this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
+      if (pack_size.value !== "any" && this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
         continue;
       }
       // if (this.data[i].CARDNAME == "RAL 840HR") {
