@@ -171,10 +171,12 @@ function SearchCodes() {
     pack_size.innerHTML = found_results[i].PACKSIZE;
     const rgb_td = document.createElement("td");
     rgb_td.style.backgroundColor = found_results[i].RGB_HTML;
+    rgb_td.innerHTML = found_results[i].RGB_HTML;
     const select_td = document.createElement("td");
     const select_btn = document.createElement("button");
     select_btn.className = "btn btn-sm btn-primary m-2";
     select_btn.innerHTML = "Select";
+
     select_btn.setAttribute(
       "onclick",
       "ViewBarcode('" +
