@@ -111,7 +111,7 @@ class FindColours {
 var BarCodeData = [];
 
 $(document).ready(function () {
-  fetch("ColourSearchDoc.csv")
+  fetch("https://raw.githubusercontent.com/KRadusz/BedecColourNamesSearch/TestingNewFile/ColourSearchDoc.csv")
     .then((response) => response.text())
     .then((text) => {
       const rows = text.trim().split("\n");
