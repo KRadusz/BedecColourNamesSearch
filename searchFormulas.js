@@ -57,73 +57,79 @@ class FindColours {
     this.data = data;
   }
   searchValues() {
-    var limitNum = 50;
-    var loopNum = 0;
-    var found_results = [];
-    // elm ids
-    var product_name = document.getElementById("product_name");
-    var card_name = document.getElementById("card_name");
-    var colour_name = document.getElementById("colour_name");
-    var pack_size = document.getElementById("pack_size");
-    for (var i = 0; i < this.data.length; i++) {
-      // skip if info is null
-      if (!this.data[i].CARDNAME) {
-        continue;
+    const limitNum = 50;
+    let loopNum = 0;
+    const found_results = [];
+
+    const product_name = document.getElementById("product_name").value.toLowerCase();
+    const card_name = document.getElementById("card_name").value.toLowerCase();
+    const colour_name = document.getElementById("colour_name").value.toLowerCase();
+    const pack_size = document.getElementById("pack_size").value.toLowerCase();
+
+    for (let i = 0; i < this.data.length; i++) {
+      const row = this.data[i];
+
+      if (!row.CARDNAME || !row.COLOURNAME) continue;
+
+      // Product Name Match
+      if (product_name !== "any") {
+        const prod = row.PRODUCTNAME || "";
+        const expectedName = colourCodeArr[product_name.toUpperCase()];
+        if (!expectedName || prod.toLowerCase() !== expectedName.toLowerCase()) continue;
       }
 
-      // check Product name input
-      // console.log(this.data[i]);
-      if (product_name.value !== "any" && this.data[i].PRODUCTNAME.toLowerCase() !== colourCodeArr[product_name.value].toLowerCase()) {
-        continue;
+      // Card Name Match
+      if (card_name !== "any") {
+        const expectedCard = cardNameArr[card_name.toUpperCase()];
+        if (!expectedCard || row.CARDNAME.toLowerCase() !== expectedCard.toLowerCase()) continue;
       }
 
-      // check colour card name name input
-      if (card_name.value !== "any" && this.data[i].CARDNAME.toLowerCase() !== cardNameArr[card_name.value].toLowerCase()) {
-        continue;
+      // Pack Size Match
+      if (!row.PACKSIZE || row.PACKSIZE.toLowerCase() !== pack_size) continue;
+
+      // Colour Name Match
+      let colour = row.COLOURNAME.toLowerCase();
+      let code = (row.COLOURCODE || "").toLowerCase();
+      let alt = (row.ALTCOLOURCODE || "").toLowerCase();
+
+      // Clean up "To Complement" prefix
+      if (colour.includes("to complement")) {
+        colour = colour.split("to complement")[1].trim();
       }
 
-      // check can size
-
-      if (this.data[i].PACKSIZE == null || this.data[i].PACKSIZE.toLowerCase() !== pack_size.value.toLowerCase()) {
-        continue;
-      }
-
-      // check colour name input
-      // set colour name to lower
-      var colourName = this.data[i].COLOURNAME.toLowerCase();
-      var colourCode = this.data[i].COLOURCODE.toLowerCase();
-      var colourAltColour = this.data[i].ALTCOLOURCODE.toLowerCase();
-
-      // check text in colour name if needed
-      if (colourName.includes("to complement*?")) {
-        this.data[i].COLOURNAME = this.data[i].COLOURNAME.split("To Complement*?")[1];
-      }
-
-      if (colourCode.includes(colour_name.value.toLowerCase()) || colourName.includes(colour_name.value.toLowerCase()) || colourAltColour.includes(colour_name.value.toLowerCase())) {
-        found_results.push(this.data[i]);
-        // go through loop num to adjust max displayed limit num
-        loopNum += 1;
-        if (loopNum == limitNum) {
-          break;
-        }
+      if (colour.includes(colour_name) || code.includes(colour_name) || alt.includes(colour_name)) {
+        found_results.push(row);
+        loopNum++;
+        if (loopNum === limitNum) break;
       }
     }
+
     return found_results;
   }
 }
 
 var BarCodeData = [];
-$(document).ready(function () {
-  join1 = BarCodeData0.concat(BarCodeData1);
-  join2 = join1.concat(BarCodeData2);
-  join3 = join2.concat(BarCodeData3);
-  join4 = join3.concat(BarCodeData4);
-  join5 = join4.concat(BarCodeData5);
 
-  BarCodeData = join5;
+$(document).ready(function () {
+  fetch("ColourSearchDoc.csv")
+    .then((response) => response.text())
+    .then((text) => {
+      const rows = text.trim().split("\n");
+      const headers = rows[0].split(",");
+
+      BarCodeData = rows.slice(1).map((row) => {
+        const values = row.split(",");
+        return headers.reduce((obj, header, index) => {
+          obj[header.trim()] = values[index].trim();
+          return obj;
+        }, {});
+      });
+    })
+    .catch((err) => console.error("Failed to load CSV:", err));
 });
 
 function SearchCodes() {
+  console.log(BarCodeData);
   var ColourVal = new FindColours(BarCodeData);
   var found_results = ColourVal.searchValues();
   var limitNum = 50;
@@ -147,6 +153,7 @@ function SearchCodes() {
     result_table.style.display = "none";
     too_many_results.style.display = "none";
   }
+
   result_body.innerHTML = "";
   for (i = 0; i < found_results.length; i++) {
     const tr = document.createElement("tr");
