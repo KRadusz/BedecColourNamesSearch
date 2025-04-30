@@ -69,7 +69,7 @@ class FindColours {
     for (let i = 0; i < this.data.length; i++) {
       const row = this.data[i];
 
-      if (!row.CARDNAME || !row.COLOURNAME) continue;
+      //if (!row.CARDNAME || !row.COLOURNAME) continue;
 
       // Product Name Match
       if (product_name !== "any") {
@@ -81,7 +81,7 @@ class FindColours {
       // Card Name Match
       if (card_name !== "any") {
         const expectedCard = cardNameArr[card_name.toUpperCase()];
-        if (!expectedCard || row.CARDNAME.toLowerCase() !== expectedCard.toLowerCase()) continue;
+        if (!expectedCard || row.CARDNAME.toUpperCase() !== expectedCard.toUpperCase()) continue;
       }
 
       // Pack Size Match
